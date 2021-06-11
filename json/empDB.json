@@ -1,34 +1,52 @@
 {
   "employees": [
     {
-      "id": 1,
-      "name": "Shaloo",
-      "salary": "55000"
+      "name": "Akash Singh ",
+      "gender": "male",
+      "departMent": [
+        "HR"
+      ],
+      "salary": "30000",
+      "startDate": "1 Jan 2020",
+      "notes": "",
+      "id": 1604589551457,
+      "profileUrl": "../assets/profile-images/Ellipse 1.png"
     },
     {
-      "name": "Amritesh",
-      "salary": "35000",
-      "id": 3
+      "name": "Amritesh Singh ",
+      "gender": "male",
+      "departMent": [
+        "HR"
+      ],
+      "salary": "30000",
+      "startDate": "10 Feb 2020",
+      "notes": "",
+      "id": 1604589594363,
+      "profileUrl": "../assets/profile-images/Ellipse 1.png"
     },
     {
-      "name": "Shaloo",
-      "salary": "55000",
-      "id": 4
+      "name": "Aditya Singh",
+      "gender": "male",
+      "departMent": [
+        "HR"
+      ],
+      "salary": "30000",
+      "startDate": "12 Mar 2020",
+      "notes": "",
+      "id": 1604589699566,
+      "profileUrl": "../assets/profile-images/Ellipse -3.png"
     },
     {
-      "name": "Shiva",
-      "salary": "52000",
-      "id": 5
-    },
-    {
-      "name": "Shiva",
-      "salary": "52000",
-      "id": 6
-    },
-    {
-      "name": "Priyanshu",
-      "salary": "58000",
-      "id": 7
+      "name": "Raj",
+      "gender": "male",
+      "departMent": [
+        "HR"
+      ],
+      "salary": "30000",
+      "startDate": "15 Apr 2020",
+      "notes": "",
+      "id": 1604589731061,
+      "profileUrl": "../assets/profile-images/Ellipse -3.png"
     }
   ]
 }
