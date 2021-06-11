@@ -25,7 +25,7 @@
     <div id="post_services" ></div>
     <script>
       const getElem = document.querySelector("#get_services");
-      const getURL = "http://localhost:3000/employee";
+      const getURL = "http://localhost:3000/employees";
       makeServiceCall("GET", getURL, true)
         .then(responseText => {
             getElem.textContent = "Get User Data: "+responseText;
@@ -35,7 +35,7 @@
         });
 
       const deleteElem = document.querySelector("#delete_services");
-      const deleteURL = "http://localhost:3000/employees/";
+      const deleteURL = "http://localhost:3000/employees/1604589731063";
       makeServiceCall("DELETE", deleteURL, false)
         .then(responseText => {
           deleteElem.textContent = "Delete Data: "+responseText;

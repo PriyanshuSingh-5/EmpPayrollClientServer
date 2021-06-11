@@ -1,17 +1,39 @@
 let empPayrollList;
+//creating event listener which will be instatiated once all the content is loaded on webpage
 window.addEventListener('DOMContentLoaded',(event)=>
 {
-    //for adding data into arrray, calling method get Employee payroll data from storage
-    empPayrollList= getEmployeePayrollDataFromStorage();
-    document.querySelector(".emp-count").textContent= empPayrollList.length;
-    createInnerHtml();
-    localStorage.removeItem('editEmp');
+    if(site_properties.use_local_storage.match("true"))
+    {
+        getEmployeePayrollDataFromStorage();
+    }
+    else
+        getEmployeePayrollDataFromServer();
 });
 
 const getEmployeePayrollDataFromStorage= ()=>{
-    return localStorage.getItem('EmployeePayrollList')?JSON.parse(localStorage.getItem('EmployeePayrollList')):[];
+    empPayrollList= localStorage.getItem('EmployeePayrollList')?JSON.parse(localStorage.getItem('EmployeePayrollList')):[];
+    processEmployeePayrollDataResponse();
 }
-//method to add data into inner html which adds data into the table
+const processEmployeePayrollDataResponse=()=>{
+    document.querySelector(".emp-count").textContent=empPayrollList.length;
+    createInnerHtml();
+    localStorage.removeItem('editEmp');
+}
+
+const getEmployeePayrollDataFromServer=()=>
+{
+    makeServiceCall("GET",site_properties.server_url,true)
+        .then(responseText=>{
+            empPayrollList= JSON.parse(responseText);
+            processEmployeePayrollDataResponse();
+        })
+        .catch(error=>{
+            console.log("GET Error Status: "+JSON.stringify(error));
+            empPayrollList=[];
+            processEmployeePayrollDataResponse();
+        })
+}
+
 const createInnerHtml=()=>
 {
 
@@ -33,14 +55,14 @@ const createInnerHtml=()=>
             <img id="${empPayrollData.id}" onclick= "update(this)" alt="edit" src="../assets/icons/create-black-18dp.svg"></td>
         </tr>`;
     }
-
+    
     document.querySelector('#table-display').innerHTML=innerHtml;
 }
 
 const createEmployeePayrollJSON = () => {
     let empPayrollListLocal = [
       {       
-        _name: 'Prerna',
+        _name: 'Harish',
         _gender: 'male',
         _department: [
             'Engineering',
@@ -67,7 +89,6 @@ const createEmployeePayrollJSON = () => {
     ];
     return empPayrollListLocal;
   }
-
   const getDeptHtml= (deptList)=>
   {
       let deptHtml='';
@@ -79,18 +100,18 @@ const createEmployeePayrollJSON = () => {
   }
 
   const remove= (node)=>{
-    
       let empPayrollData= empPayrollList.find(empData=>empData.id=node.id);
       if(!empPayrollData) return;
       const index= empPayrollList.map(empData=>empData.id).indexOf(empPayrollData.id);
       empPayrollList.splice(index,1);
+      //updating the data into local storage
       localStorage.setItem("EmployeePayrollList",JSON.stringify(empPayrollList));
       document.querySelector(".emp-count").textContent= empPayrollList.length;
       createInnerHtml();
   }
 
+  //update method to edit the details of employee payroll
   const update= (node)=>{
-
       let empPayrollData= empPayrollList.find(empData=>empData.id== node.id);
       if(!empPayrollData) return;
       localStorage.setItem('editEmp',JSON.stringify(empPayrollData));
