@@ -25,8 +25,7 @@
     <div id="post_services" ></div>
     <script>
       const getElem = document.querySelector("#get_services");
-      const getURL = "http://localhost:3000/employees/";
-      //use of MakeserviceCall
+      const getURL = "http://localhost:3000/employee";
       makeServiceCall("GET", getURL, true)
         .then(responseText => {
             getElem.textContent = "Get User Data: "+responseText;
@@ -36,7 +35,7 @@
         });
 
       const deleteElem = document.querySelector("#delete_services");
-      const deleteURL = "http://localhost:3000/employees/7";
+      const deleteURL = "http://localhost:3000/employees/";
       makeServiceCall("DELETE", deleteURL, false)
         .then(responseText => {
           deleteElem.textContent = "Delete Data: "+responseText;
@@ -48,17 +47,16 @@
       const postElem = document.querySelector("#post_services");
       const postURL = "http://localhost:3000/employees";
       const emplData = {
-      "_name": " Raanu ",
+      "_name": "Amarpa Shashanka Keerthi Kumar",
       "_gender": "female",
       "_department": [
-        "Engineer"
+        "Sales"
       ],
-      "_salary": "450000",
-      "_startDate": "22 Oct 2019",
+      "_salary": "400000",
+      "_startDate": "29 Oct 2019",
       "_note": "",
-      "_profilePic": "../assets/Ellipse -1.png"
+      "_profilePic": "../assets//Ellipse -1.png"
     }
-    
       makeServiceCall("POST", postURL, true, emplData)
         .then(responseText => {
           postElem.textContent = "New User Data: "+responseText;
