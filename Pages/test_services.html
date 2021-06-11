@@ -26,6 +26,7 @@
     <script>
       const getElem = document.querySelector("#get_services");
       const getURL = "http://localhost:3000/employees/";
+      //use of MakeserviceCall
       makeServiceCall("GET", getURL, true)
         .then(responseText => {
             getElem.textContent = "Get User Data: "+responseText;
