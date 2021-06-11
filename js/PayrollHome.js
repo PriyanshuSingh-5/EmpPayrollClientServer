@@ -75,7 +75,7 @@ const createEmployeePayrollJSON = () => {
         _profilePic: '../assets/profile-images/Ellipse -2.png'
       },
       {
-        _name: 'Kumar',
+        _name: 'Krishna',
         _gender: 'female',
         _department: [
             'Sales'
